@@ -33,9 +33,13 @@ contentController.comment = () => {
 // Add a comment to db
 contentController.addComment = (input) => {
   const comment = new Comments(input);
-  comment.save()
-    .then(result => result)
-    .catch(err => console.log(err));
+  return comment.save()
+    .then((result) => {
+      console.log(result);
+      return Topics.findByIdAndUpdate(result.topic, { $push: { comments: result._id } }, { new: true })
+        .then(topicResult => result)
+        .catch(err => console.log(err));
+    })
 };
 
 // Like a comment in db
