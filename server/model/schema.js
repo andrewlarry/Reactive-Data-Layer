@@ -22,11 +22,11 @@ const typeDefs = `
   }
   type Topic {
     id: ID! 
-    content: String @live
-    author: String @live
-    authors: [String] @live
-    comment: Comment @live
-    comments: [Comment] @live
+    content: String
+    author: String 
+    authors: [String] 
+    comment: Comment 
+    comments: [Comment] 
   }
   type Comment {
     id: ID! @live

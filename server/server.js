@@ -14,8 +14,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 app.use(express.static(path.join(__dirname, '../client/public')));
-app.use('/graphql', graphqlHTTP({ schema, graphiql: true, extensions: (test) => console.log('test') }));
+app.use('/graphql', graphqlHTTP({ schema, context: {user: 'Andrew'}, graphiql: true, extensions: (test) => console.log('test') }));
 
 app.get('/', (req, res) => res.send('hi'));
 
